@@ -15,8 +15,27 @@ import { Logout } from "./pages/Logout";
 // Class-based equivalents of "Profile" component
 import { ProfileWithMsal } from "./pages/ProfileWithMsal";
 import { ProfileRawContext } from "./pages/ProfileRawContext";
+import { MapDash } from "./pages/MapDash"
 import { ProfileUseMsalAuthenticationHook } from "./pages/ProfileUseMsalAuthenticationHook";
 import { UserProvider } from "./contexts/UserContext";
+
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+        mode: 'light',
+        primary: {
+          main: '#002664',
+        },
+        secondary: {
+          main: '#f50057',
+        },
+      },
+      typography: {
+        fontFamily: '"Public Sans", "Arial", sans-serif',
+      },
+  });
 
 function App({ pca }) {
     // The next 3 lines are optional. This is how you configure MSAL to take advantage of the router's navigate functions when MSAL redirects between pages in your app
@@ -27,11 +46,13 @@ function App({ pca }) {
     return (
         <MsalProvider instance={pca}>
             <UserProvider>
-                <PageLayout>
-                    <Grid container justifyContent="center">
-                        <Pages />
-                    </Grid>
-                </PageLayout>
+                <ThemeProvider theme={theme}>
+                    <PageLayout>
+                        <Grid container justifyContent="center">
+                            <Pages />
+                        </Grid>
+                    </PageLayout>
+                </ThemeProvider>
             </UserProvider>
         </MsalProvider>
     );
@@ -48,6 +69,7 @@ function Pages() {
                 element={<ProfileUseMsalAuthenticationHook />}
             />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/resource/maps" element={<MapDash />} />
             <Route path="/" element={<Home />} />
         </Routes>
     );

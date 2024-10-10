@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { loginRequest } from "../authConfig";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 
 export const SignInButton = () => {
     const { instance } = useMsal();
@@ -32,10 +33,12 @@ export const SignInButton = () => {
     return (
         <div>
             <Button
-                onClick={(event) => setAnchorEl(event.currentTarget)}
+                //onClick={(event) => setAnchorEl(event.currentTarget)}
+                onClick={() => handleLogin("redirect")}
                 color="inherit"
             >
-                Login
+                <AccountCircle />&nbsp;
+                Sign In
             </Button>
             <Menu
                 id="menu-appbar"

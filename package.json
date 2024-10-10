@@ -59,5 +59,9 @@
         "samples/msal-angular-v3-samples/*",
         "samples/msal-react-samples/*",
         "samples/msal-node-samples/*"
-    ]
+    ],
+    "dependencies": {
+        "leaflet": "^1.9.4",
+        "react-leaflet": "^4.2.1"
+    }
 }
