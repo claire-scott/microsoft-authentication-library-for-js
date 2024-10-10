@@ -16,6 +16,7 @@ import { Logout } from "./pages/Logout";
 import { ProfileWithMsal } from "./pages/ProfileWithMsal";
 import { ProfileRawContext } from "./pages/ProfileRawContext";
 import { ProfileUseMsalAuthenticationHook } from "./pages/ProfileUseMsalAuthenticationHook";
+import { UserProvider } from "./contexts/UserContext";
 
 function App({ pca }) {
     // The next 3 lines are optional. This is how you configure MSAL to take advantage of the router's navigate functions when MSAL redirects between pages in your app
@@ -25,11 +26,13 @@ function App({ pca }) {
 
     return (
         <MsalProvider instance={pca}>
-            <PageLayout>
-                <Grid container justifyContent="center">
-                    <Pages />
-                </Grid>
-            </PageLayout>
+            <UserProvider>
+                <PageLayout>
+                    <Grid container justifyContent="center">
+                        <Pages />
+                    </Grid>
+                </PageLayout>
+            </UserProvider>
         </MsalProvider>
     );
 }
